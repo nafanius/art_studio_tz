@@ -17,7 +17,7 @@ class QuoteModel(Base):
     timestep = Column(DateTime(timezone=True), server_default=func.now())  # время создания записи
 
 class DBsql:
-    """SQLAlchemy based DB class
+    """SQLAlchemy based database handler
     """
     def __init__(self, user: str, password: str, host: str, port: int, database: str):
         db_url = f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}"
@@ -43,6 +43,14 @@ class DBsql:
             session.close()
 
     def create(self, item: Dict[str, Any]) -> Optional[int]:
+        """create a new quote record
+
+        Args:
+            item (Dict[str, Any]): quote data
+
+        Returns:
+            Optional[int]: new record id or None if error
+        """        
         def _create(session):
             quote = QuoteModel(**item)
             session.add(quote)
@@ -50,6 +58,11 @@ class DBsql:
         return self._execute(_create)
 
     def read_all(self) -> List[Dict[str, Any]]:
+        """Read all quote records
+
+        Returns:
+            List[Dict[str, Any]]: list of dictionary with quote data
+        """        
         def _read_all(session):
             quotes = session.query(QuoteModel).all()
             return [{c.name: getattr(q, c.name) for c in q.__table__.columns} for q in quotes]
@@ -62,6 +75,14 @@ class DBsql:
         return cast(bool, self._execute(_delete_all, default=False))
 
     def get_latest(self, n: int = 5) -> List[Dict[str, Any]]:
+        """ Get latest n quotes
+
+        Args:
+            n (int, optional): Number of quotes to get. Defaults to 5.
+
+        Returns:
+            List[Dict[str, Any]]: list of dictionary with quote data
+        """        
         def _latest(session):
             quotes = session.query(QuoteModel).order_by(desc(QuoteModel.timestep)).limit(n).all()
             return [{c.name: getattr(q, c.name) for c in q.__table__.columns} for q in quotes]

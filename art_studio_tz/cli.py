@@ -102,10 +102,10 @@ def get(user: str = typer.Option(..., "-u", "--user", help="Database user"),
         database: str = typer.Option("quotes_db", "-d", "--database", help="Database name, default quotes_db"),
         url: str = typer.Option("https://zenquotes.io/api/quotes", "--url", help="URL for get quotes, default https://zenquotes.io/api/random"),
           ):
-    """Get 50 quote from url and add to SQLdb"""
+    """Get 50 quotes from url and add to mySQL"""
     with quote_db_sql(user=user, password=password, host=host, port=port, database=database) as db_sql:
         try:
-            db_sql.get_some_quotes(url)  # method get_some_qotes in art_studio_tz/api.py --- IGNORE ---
+            db_sql.get_some_quotes(url)
         except art_studio_tz.BadReqest:
             print(f"Could not get quote from {url}")
 
@@ -116,10 +116,10 @@ def delete_all_sql(user: str = typer.Option(..., "-u", "--user", help="Database 
         port: int = typer.Option(3306, "-P", "--port", help="Database port, default 3306"),
         database: str = typer.Option("quotes_db", "-d", "--database", help="Database name, default quotes_db"),
         ):
-    """Delete all quotes in SQLdb"""
+    """Delete all quotes in mySQL"""
     with quote_db_sql(user=user, password=password, host=host, port=port, database=database) as db_sql:
         try:
-            db_sql.delete_all()  # method delete_all in art_studio_tz/api.py --- IGNORE ---
+            db_sql.delete_all() 
         except Exception as err:
             print(f"Could not delete quotes in {database} because {err}")
         
@@ -133,7 +133,7 @@ def list_sql(
     author: str = typer.Option(None, "-a", "--author", help="sort for author")
 ):
     """
-    List quotes in SQLdb.
+    List quotes in mySQL
     """
     with quote_db_sql(user=user, password=password, host=host, port=port, database=database) as db_sql:
         the_quote = db_sql.list_quote(author=author)
@@ -159,7 +159,7 @@ def list_latest_5(
     number: int = typer.Option(5, "-n", "--number", help="Number of latest quotes to list, default 5")
 ):
     """
-    List quotes in SQLdb.
+    list latest 'number' quotes in mySQL, default 5
     """
     with quote_db_sql(user=user, password=password, host=host, port=port, database=database) as db_sql:
         the_quote = db_sql.get_latest(number)
@@ -212,6 +212,11 @@ def get_path():
 
 @contextmanager
 def quote_db():
+    """Context manager for QuoteDB.
+
+    Yields:
+        QuoteDB: QuoteDB instance
+    """    
     db_path = get_path()
     db = art_studio_tz.QuoteDB(db_path)
     yield db
@@ -219,8 +224,18 @@ def quote_db():
 @contextmanager
 def quote_db_sql(user: str, password: str, host: str, port: int, database: str):
     """
-    Контекстный менеджер для работы с DBsql
-    """
+    Context manager for QuoteDBsql.
+
+    Args:
+        user (str): username for database
+        password (str): password for database
+        host (str): hostname for database
+        port (int): port for database
+        database (str): database name
+
+    Yields:
+        QuoteDBsql: QuoteDBsql instance
+    """    
     db = art_studio_tz.QuoteDBsql(user=user, password=password, host=host, port=port, database=database)
     try:
         yield db
