@@ -4,8 +4,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "art_studio_tz"
-version = "0.1.0"  # версия обязательна
-description = "Art studio tz CLI"  # описание желательно
+version = "1.0.0"
+description = "Art studio tz CLI" 
 authors = ["Ilin Maksim <ilin1980maks@gmail.com>"]
 license = "MIT"
 readme = "README.md"
@@ -13,18 +13,25 @@ homepage = "https://github.com/nafanius/art_studio_tz"
 
 [tool.poetry.dependencies]
 python = ">=3.10"
-charset-normalizer = "3.4.3"
-click = "8.3.0"
-idna = "3.10"
-markdown-it-py = "4.0.0"
-mdurl = "0.1.2"
-Pygments = "2.19.2"
-requests = "2.32.5"
-rich = "14.1.0"
-shellingham = "1.5.4"
-typer = "0.19.2"
-typing_extensions = "4.15.0"
-urllib3 = "2.5.0"
+certifi==2025.8.3
+charset-normalizer==3.4.3
+click==8.3.0
+greenlet==3.2.4
+idna==3.10
+iniconfig==2.1.0
+markdown-it-py==4.0.0
+mdurl==0.1.2
+packaging==25.0
+pluggy==1.6.0
+Pygments==2.19.2
+PyMySQL==1.1.2
+requests==2.32.5
+rich==14.1.0
+shellingham==1.5.4
+SQLAlchemy==2.0.43
+typer==0.19.2
+typing_extensions==4.15.0
+urllib3==2.5.0
 
 [tool.poetry.extras]
 test = ["pytest", "faker", "tox", "coverage", "pytest-cov"]
