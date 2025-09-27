@@ -17,7 +17,7 @@ from .db_sql import DBsql
 __all__ = [
     "Quote",
     "QuoteDB",
-    "QuoteDBsql"
+    "QuoteDBsql",
     "QuoteException",
     "MissingText",
     "InvalidQuoteId",
@@ -150,16 +150,16 @@ class QuoteDBsql:
         
         self._db = DBsql(user, password, host, port, database)
 
-    def add_quote_sql(self, quote: Quote):
-        """Add 50 quote to SQL"""
+    def add_quote_sql(self, quote: Quote) -> None:
+        """Add a quote, return the id of quote."""
         if not quote.text:
             raise MissingText
         if quote.author is None:
             quote.author = ""
         self._db.create(quote.to_dict())
-        print('Added 50 quotes')
+        
  
-    def list_quote(self, author=None):
+    def list_quote(self, author=None) -> list[Quote]:
         """Return a list of quotes."""
         all = self._db.read_all()
         if author is not None:
@@ -172,9 +172,8 @@ class QuoteDBsql:
             return [Quote.from_dict(t) for t in all]
 
         
-    def get_some_qotes(self, url: str):
+    def get_some_quotes(self, url: str):
         """."""
-
 
         # url = "https://zenquotes.io/api/quotes"    
                                                                                                                                                                            
@@ -182,18 +181,23 @@ class QuoteDBsql:
             response = requests.get(url)                                                                                                                                                                          
             response.raise_for_status()  # Генерирует исключение для статуса ошибки HTTP                                                                                                                          
             data = response.json()                                                                                                                                                                                
-
-
             if data:
                 for item in data:                                                                                                                                                                                              
-                    quote = item[0]["q"]                                                                                                                                                                              
-                    author = item[0]["a"]
-                    self.add_quote_sql(Quote(text=quote, author=author))                                                                                                                                                                             
-                    print(f"Added Quote: {quote} - Author: {author}")                                                                                                                                                       
+                    quote = item["q"]                                                                                                                                                                              
+                    author = item["a"]
+                    self.add_quote_sql(Quote(text=quote, author=author))                                                                                                                                                                            
+                    print(f"Added Quote: {quote} - Author: {author}") 
+                    time.sleep(0.5)   
+                print('Added 50 quotes, you can see them using the "art_studio_t list_sql" command')                                                                                                                                               
             else:                                                                                                                                                                                                 
                 print("No data received.")
         except requests.exceptions.RequestException as e:                                                                                                                                                         
             print(f"Error fetching quote: {e}")                                                                                                                                                                   
+
+    def get_latest(self, count) -> list[Quote]:
+        """Remove all quotes from db."""
+        all = self._db.get_latest(count)
+        return [Quote.from_dict(t) for t in all]
 
     def delete_all(self) -> None:
         """Remove all quotes from db."""
