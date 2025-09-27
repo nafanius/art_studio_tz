@@ -10,7 +10,7 @@ from dataclasses import field
 from pathlib import Path
 
 
-from db import DB
+from .db import DB
 
 __all__ = [
     "Quote",
@@ -101,7 +101,9 @@ class QuoteDB:
         """Set a quote state to 'in prog'."""
 
 
-        # url = "https://zenquotes.io/api/random"                                                                                                                                                                       
+        # url = "https://zenquotes.io/api/random"    
+                                                                                                                                                                           
+        print("For stop taking quotes press 'Ctrl + C'") 
                                                                                                                                                                                                                    
         while True:                                                                                                                                                                                                   
             try:                                                                                                                                                                                                      
@@ -144,16 +146,16 @@ class QuoteDB:
 
 if __name__ == "__main__":
     ob = QuoteDB(Path(os.getcwd()))
-    ob.start("https://zenquotes.io/api/random",10)
-    # print(ob.list_quote())
-    # print(ob.count())
-    # # ob.delete_all()
+    # ob.start("https://zenquotes.io/api/random",10)
+    print(ob.list_quote())
+    print(ob.count())
+    # ob.delete_all()
 
-    # ob.delete_quote(1)
-    # ob.update_qote(2, Quote(text="New text"))
-    # print(ob.get_quote(2))
-    # ob.add_quote(Quote(text="Some text", author="Some author"))
-    # print(ob.list_quote())  
-    # print(ob.count())
-    # ob.delete_all()      
+    ob.delete_quote(1)
+    ob.update_qote(2, Quote(text="New text"))
+    print(ob.get_quote(2))
+    ob.add_quote(Quote(text="Some text", author="Some author"))
+    print(ob.list_quote())  
+    print(ob.count())
+    ob.delete_all()      
 

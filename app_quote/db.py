@@ -35,7 +35,6 @@ class DB:
         with self.file.open('a', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=self.fieldnames)
             writer.writerow(row)
-        print(new_id)
         return new_id
 
     def read(self, id: int) -> dict[str, Any] | None:
