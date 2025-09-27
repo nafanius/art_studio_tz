@@ -16,19 +16,19 @@
 
 ## Установка
 
-### С PyPI (рекомендуется)
+**С PyPI (рекомендуется)**
 
 ```bash
 pip install art_studio_tz
 ```
 
-### Из GitHub
+**Из GitHub**
 
 ```bash
 pip install git+https://github.com/nafanius/art_studio_tz.git
 ```
 
-### Из исходного кода
+**Из исходного кода**
 
 ```bash
 # Клонируем репозиторий
@@ -44,13 +44,13 @@ poetry install
 
 ## Использование
 
-### После установки доступна команда art_studio_tz:
+**После установки доступна команда art_studio_tz:**
 
 ```bash
 art_studio_tz --help
 ```
 
-### Основные команды CLI (решение пункта )
+**Основные команды CLI**
 
 - `start [-u URL] [-p Пауза]` — Получать цитаты с API и сохранять в локальную БД(quotes.csv) с паузой между запросами (по умолчанию 5 с)
 - `list [-a Автор]` — Показать список цитат (опционально с фильтрацией по автору)
@@ -61,7 +61,7 @@ art_studio_tz --help
 - `config` — Показать путь к локальной базе данных
 - `count` — Показать количество цитат в локальной базе
 
-### Команды для работы с MySQL
+**Команды для работы с MySQL**
 
 - `get -u user -p password [-H host] [-P port] [-d db] [--url URL]` — Получить 50 цитат из API и записать в MySQL(требуется сервер mySQL)
 - `list-latest-5 -u user -p pass ... [-n N]` — Показать последние N цитат из MySQL (по умолчанию 5)
@@ -77,7 +77,7 @@ art_studio_tz --help
 - `delete-all-sql -u user -p pass ...` — Удалить все цитаты в MySQL
 - `list-sql -u user -p pass ... [-a Автор]` — Показать список цитат из MySQL
 
-  каждая команда имеет отдельный --help пример:
+  **каждая команда имеет отдельный --help пример:**
 
 ```bash
   art_studio_tz get --help
@@ -90,8 +90,8 @@ art_studio_tz --help
   Get 50 quotes from url and add to mySQL
 
 
-  _ --user -u TEXT Database user [required]
-  _ --password -p TEXT Database password [required]
+  * --user -u TEXT Database user [required]
+  * --password -p TEXT Database password [required]
   --host -H TEXT Database host, default localhost
   --port -P INTEGER Database port, default 3306
   --database -d TEXT Database name, default quotes_db
@@ -104,3 +104,24 @@ art_studio_tz --help
 
 - Python >= 3.10
 - Зависимости перечислены в pyproject.toml (SQLAlchemy, Typer, Rich и др.), requirement.txt
+
+## Струуктура
+
+.
+├── art_studio_tz
+│ ├── **init**.py
+│ ├── **main**.py
+│ ├── api.py
+│ ├── db.py
+│ └── db_sql.py
+├── LICENSE
+├── pyproject.toml
+├── quotes.csv
+├── README.md
+├── requirement.txt
+├── tests
+│ ├── test_api.py
+│ ├── test_cli.py
+│ ├── test_db.py
+│ └── test_db_sql.py
+└── ТЗ.pdf
