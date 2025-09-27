@@ -11,10 +11,13 @@ from pathlib import Path
 
 
 from .db import DB
+from .db_sql import DBsql
+
 
 __all__ = [
     "Quote",
     "QuoteDB",
+    "QuoteDBsql"
     "QuoteException",
     "MissingText",
     "InvalidQuoteId",
@@ -65,7 +68,7 @@ class QuoteDB:
         self._db.update(id, {"id": id,
                              "timestep":datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S %Z') })
         return id
-
+    
     def get_quote(self, quote_id: int) -> Quote:
         """Return a quote with a matching id."""
         db_item = self._db.read(quote_id)
@@ -128,7 +131,6 @@ class QuoteDB:
                 print("\nОстановка запроса цитат пользователем.")
                 break   
 
-
     def delete_quote(self, quote_id: int) -> None:
         """Remove a quote from db with given quote_id."""
         try:
@@ -142,6 +144,60 @@ class QuoteDB:
 
     def path(self):
         return self._db_path
+
+class QuoteDBsql:
+    def __init__(self, user, password, host = "localhost", port = 3306,  database = "quotes_db"):
+        
+        self._db = DBsql(user, password, host, port, database)
+
+    def add_quote_sql(self, quote: Quote):
+        """Add 50 quote to SQL"""
+        if not quote.text:
+            raise MissingText
+        if quote.author is None:
+            quote.author = ""
+        self._db.create(quote.to_dict())
+        print('Added 50 quotes')
+ 
+    def list_quote(self, author=None):
+        """Return a list of quotes."""
+        all = self._db.read_all()
+        if author is not None:
+            return [
+                Quote.from_dict(t)
+                for t in all
+                if (t["author"] == author)
+            ]
+        else:
+            return [Quote.from_dict(t) for t in all]
+
+        
+    def get_some_qotes(self, url: str):
+        """."""
+
+
+        # url = "https://zenquotes.io/api/quotes"    
+                                                                                                                                                                           
+        try:                                                                                                                                                                                                      
+            response = requests.get(url)                                                                                                                                                                          
+            response.raise_for_status()  # Генерирует исключение для статуса ошибки HTTP                                                                                                                          
+            data = response.json()                                                                                                                                                                                
+
+
+            if data:
+                for item in data:                                                                                                                                                                                              
+                    quote = item[0]["q"]                                                                                                                                                                              
+                    author = item[0]["a"]
+                    self.add_quote_sql(Quote(text=quote, author=author))                                                                                                                                                                             
+                    print(f"Added Quote: {quote} - Author: {author}")                                                                                                                                                       
+            else:                                                                                                                                                                                                 
+                print("No data received.")
+        except requests.exceptions.RequestException as e:                                                                                                                                                         
+            print(f"Error fetching quote: {e}")                                                                                                                                                                   
+
+    def delete_all(self) -> None:
+        """Remove all quotes from db."""
+        self._db.delete_all()
 
 
 if __name__ == "__main__":

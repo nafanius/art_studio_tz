@@ -133,3 +133,14 @@ def quote_db():
     db = art_studio_tz.QuoteDB(db_path)
     yield db
 
+@contextmanager
+def quote_db_sql(user: str, password: str, host: str, port: int, database: str):
+    """
+    Контекстный менеджер для работы с DBsql
+    """
+    db = art_studio_tz.DBsql(user=user, password=password, host=host, port=port, database=database)
+    try:
+        yield db
+    finally:
+        # В DBsql нет явного за
+        db.engine.dispose()
