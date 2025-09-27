@@ -6,7 +6,6 @@ from sqlalchemy.orm import sessionmaker
 from art_studio_tz.db_sql import QuoteModel, Base
 
 
-
 @pytest.fixture
 def dbsql():
     engine = create_engine("sqlite:///:memory:", echo=False, future=True)

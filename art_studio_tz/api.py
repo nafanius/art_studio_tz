@@ -139,7 +139,7 @@ class QuoteDB:
         """Return the number of quotes in db."""
         return self._db.count()
 
-    def update_qote(self, quote_id: int, quote_mods: Quote) -> None:
+    def update_quote(self, quote_id: int, quote_mods: Quote) -> None:
         """update a quote with modifications.
 
         Args:

@@ -76,7 +76,7 @@ def update(
     text = " ".join(text) if text else None
     with quote_db() as db:
         try:
-            db.update_qote(
+            db.update_quote(
                 quote_id, art_studio_tz.Quote(text=text, author=author)
             )
         except art_studio_tz.InvalidQuoteId:

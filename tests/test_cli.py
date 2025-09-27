@@ -62,8 +62,8 @@ def test_list_quote(mock_quote_db):
 def test_update(mock_quote_db):
     result = runner.invoke(app, ["update", "1", "-t", "New text", "-o", "New author"])
     assert result.exit_code == 0
-    mock_quote_db.update_qote.assert_called_once()
-    arg = mock_quote_db.update_qote.call_args[0][1]
+    mock_quote_db.update_quote.assert_called_once()
+    arg = mock_quote_db.update_quote.call_args[0][1]
     assert arg.text == "New text"
     assert arg.author == "New author"
 
@@ -79,7 +79,7 @@ def test_sql_get(mock_quote_db_sql):
 
 @pytest.mark.skip()
 def test_sql_delete_all(mock_quote_db_sql):
-    mock_quote_db_sql.delete_all.return_value = None  # мок корректный
+    mock_quote_db_sql.delete_all.return_value = None  
 
     result = runner.invoke(
         app,
@@ -94,10 +94,10 @@ def test_sql_delete_all(mock_quote_db_sql):
         standalone_mode=False
     )
 
-    print(result.output)  # Для диагностики
+    print(result.output)  
     assert result.exit_code == 0
     mock_quote_db_sql.delete_all.assert_called_once()
-    
+
 @pytest.mark.skip()
 def test_sql_list_latest_5(mock_quote_db_sql):
     class FakeQuote:

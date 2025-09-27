@@ -131,14 +131,14 @@ class TestQuoteDB:
 
     def test_update_quote_calls_db_update(self):
         quote_mod = Quote(text="New text", author="New author")
-        self.quote_db.update_qote(1, quote_mod)
+        self.quote_db.update_quote(1, quote_mod)
         self.mock_db.update.assert_called_once_with(1, quote_mod.to_dict())
 
     def test_update_quote_invalid_id_raises(self):
         quote_mod = Quote(text="New text", author="New author")
         self.mock_db.update.side_effect = KeyError
         with pytest.raises(InvalidQuoteId):
-            self.quote_db.update_qote(999, quote_mod)
+            self.quote_db.update_quote(999, quote_mod)
 
     def test_delete_quote_calls_db_delete(self):
         self.quote_db.delete_quote(1)
