@@ -1,4 +1,6 @@
-**Art studio tz CLI** — это консольное приложение для управления цитатами.  
+## Art studio tz CLI
+
+это консольное приложение для управления цитатами.
 Поддерживает локальную базу данных(quotes.csv) и работу с MySQL.
 решение ТЗ пункт(3, 4, 5)
 
@@ -97,7 +99,19 @@ art_studio_tz --help
   --database -d TEXT Database name, default quotes_db
   --url TEXT URL for get quotes, default https://zenquotes.io/api/random
   --help Show this message and exit.
+```
 
+**Переменные окружения**
+
+```bash
+  export QUOTES_DB_DIR=/путь/к/папке
+```
+
+**Разработка и тестирование**
+
+```bash
+poetry install --with test
+pytest
 ```
 
 ## Требования
@@ -107,6 +121,7 @@ art_studio_tz --help
 
 ## Струуктура
 
+```bash
 .
 ├── art_studio_tz
 │ ├── **init**.py
@@ -125,3 +140,8 @@ art_studio_tz --help
 │ ├── test_db.py
 │ └── test_db_sql.py
 └── ТЗ.pdf
+```
+
+## Лицензия
+
+MIT © 2025 Ilin Maksim
