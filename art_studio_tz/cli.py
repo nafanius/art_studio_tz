@@ -1,6 +1,7 @@
 """Command Line Interface (CLI) for quotes project."""
 import os
 from io import StringIO
+from sqlalchemy.engine import Engine
 import pathlib
 import rich
 from rich.table import Table
@@ -242,4 +243,3 @@ def quote_db_sql(user: str, password: str, host: str, port: int, database: str):
     finally:
         if hasattr(db, "engine") and isinstance(db.engine, Engine):
             db.engine.dispose()
-        
