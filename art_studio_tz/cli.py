@@ -7,7 +7,7 @@ from rich.table import Table
 from contextlib import contextmanager
 from typing import List
 
-import app_quote
+import art_studio_tz
 
 import typer
 
@@ -19,7 +19,7 @@ app = typer.Typer(add_completion=True)
 @app.command()
 def version():
     """Return version of app_quote application"""
-    print(app_quote.__version__)
+    print(art_studio_tz.__version__)
 
 
 @app.command()
@@ -30,7 +30,7 @@ def add(
     """Add a quote to db."""
     text = " ".join(text) if text else None
     with quote_db() as db:
-        db.add_quote(app_quote.Quote(text=text, author=author))
+        db.add_quote(art_studio_tz.Quote(text=text, author=author))
 
 
 @app.command()
@@ -39,7 +39,7 @@ def delete(quote_id: int):
     with quote_db() as db:
         try:
             db.delete_quote(quote_id)
-        except app_quote.InvalidQuoteId:
+        except art_studio_tz.InvalidQuoteId:
             print(f"Error: Invalid qupte id {quote_id}")
 
 
@@ -76,9 +76,9 @@ def update(
     with quote_db() as db:
         try:
             db.update_qote(
-                quote_id, app_quote.Quote(text=text, author=author)
+                quote_id, art_studio_tz.Quote(text=text, author=author)
             )
-        except app_quote.InvalidQuoteId:
+        except art_studio_tz.InvalidQuoteId:
             print(f"Error: Invalid quote id {quote_id}")
 
 
@@ -91,7 +91,7 @@ def start(url: str = typer.Option("https://zenquotes.io/api/random", "-u", "--ur
     with quote_db() as db:
         try:
             db.start(url, pause)
-        except app_quote.BadReqest:
+        except art_studio_tz.BadReqest:
             print(f"Could not get quote from {url}")
 
 @app.command()
@@ -130,6 +130,6 @@ def get_path():
 @contextmanager
 def quote_db():
     db_path = get_path()
-    db = app_quote.QuoteDB(db_path)
+    db = art_studio_tz.QuoteDB(db_path)
     yield db
 
