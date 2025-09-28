@@ -110,26 +110,25 @@ art_studio_tz --help
 - `delete-all-sql -u user -p pass ...` — Удалить все цитаты в MySQL
 - `list-sql -u user -p pass ... [-a Автор]` — Показать список цитат из MySQL
 
-  **каждая команда имеет отдельный --help пример:**
+**каждая команда имеет отдельный --help пример:**
 
 ```bash
   art_studio_tz get --help
 
-  $ art_studio_tz get -u USER -p PASSWORD
+ Usage: art_studio_tz get [OPTIONS]
 
-    Usage: art_studio_tz get [OPTIONS]
+ Get 50 quotes from url and add to mySQL
 
-
-  Get 50 quotes from url and add to mySQL
-
-
-  * --user -u TEXT Database user [required]
-  * --password -p TEXT Database password [required]
-  --host -H TEXT Database host, default localhost
-  --port -P INTEGER Database port, default 3306
-  --database -d TEXT Database name, default quotes_db
-  --url TEXT URL for get quotes, default https://zenquotes.io/api/random
-  --help Show this message and exit.
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────╮
+│ *  --user      -u      TEXT     Database user [required]                                          │
+│ *  --password  -p      TEXT     Database password [required]                                      │
+│    --host      -H      TEXT     Database host, default localhost [default: localhost]             │
+│    --port      -P      INTEGER  Database port, default 3306 [default: 3306]                       │
+│    --database  -d      TEXT     Database name, default quotes_db [default: quotes_db]             │
+│    --url               TEXT     URL for get quotes, default https://zenquotes.io/api/random       │
+│                                 [default: https://zenquotes.io/api/quotes]                        │
+│    --help                       Show this message and exit.                                       │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 **Примеры использования**
