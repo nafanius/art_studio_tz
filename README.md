@@ -133,7 +133,7 @@ art_studio_tz --help
 
 Получение всех записей из quotes.csv
 
-````bash
+```bash
   $ art_studio_tz list
 
    ID   TimeStep                  Quote                                                                          Author
@@ -149,7 +149,7 @@ art_studio_tz --help
   # по умолчянию DB на основе CSV(quotes.csv) создаётся автомотически в директории откуда вызывается программа
   # при необходимости создайте переменную окружения где нужно сохранять quotes.csv
   export QUOTES_DB_DIR=/путь/к/папке
-````
+```
 
 **Разработка и тестирование**
 
