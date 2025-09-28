@@ -54,7 +54,7 @@ poetry install
 **После установки доступна команда art_studio_tz:**
 
 ```bash
-art_studio_tz --help
+  $ art_studio_tz --help
 
   Usage: art_studio_tz [OPTIONS] COMMAND [ARGS]...
 
@@ -113,7 +113,7 @@ art_studio_tz --help
 **каждая команда имеет отдельный --help пример:**
 
 ```bash
-  art_studio_tz get --help
+$ art_studio_tz get --help
 
  Usage: art_studio_tz get [OPTIONS]
 

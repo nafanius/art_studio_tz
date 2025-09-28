@@ -170,7 +170,7 @@ class QuoteDB:
         while True:                                                                                                                                                                                                   
             try:                                                                                                                                                                                                      
                 response = requests.get(url)                                                                                                                                                                          
-                response.raise_for_status()  # Генерирует исключение для статуса ошибки HTTP                                                                                                                          
+                response.raise_for_status()                                                                                                                           
                 data = response.json()                                                                                                                                                                                
                                                                                                                                                                                                                     
                 if data:                                                                                                                                                                                              
@@ -181,7 +181,7 @@ class QuoteDB:
                 else:                                                                                                                                                                                                 
                     print("No data received.")
                 print("For stop taking quotes press 'Ctrl + C'")                                                                                                                                                                        
-                time.sleep(pause)  # Пауза в 1 секунду
+                time.sleep(pause)  
 
             except requests.exceptions.RequestException as e:                                                                                                                                                         
                 print(f"Error fetching quote: {e}")                                                                                                                                                                   
