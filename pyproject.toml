@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "art_studio_tz"
-version = "0.1.0"  
+version = "0.1.1"  
 description = "Art studio tz CLI"  
 authors = ["Ilin Maksim <ilin1980maks@gmail.com>"]
 license = "MIT"

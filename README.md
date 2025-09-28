@@ -55,15 +55,35 @@ poetry install
 
 ```bash
 art_studio_tz --help
-```
 
-**Основные команды CLI для локальной БД(quotes.csv)**
-
-```bash
   Usage: art_studio_tz [OPTIONS] COMMAND [ARGS]...
 
   quotes is a small command line task tracking application
+
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --install-completion          Install completion for the current shell.                                           │
+│ --show-completion             Show completion for the current shell, to copy it or customize the installation.    │
+│ --help                        Show this message and exit.                                                         │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ version          Return version of app_quote application                                                          │
+│ start            Get quote from url and add to db. with pause between requests. url - URL for get quotes, default │
+│                  https://zenquotes.io/api/random pause - pause between requests quotes in seconds, default 5      │
+│                  seconds                                                                                          │
+│ list             List quotes in db.                                                                               │
+│ add              Add a quote to db.                                                                               │
+│ delete           Remove quote in db with given id.                                                                │
+│ update           Modify a quote in db with given id with new info.                                                │
+│ config           List the path to the quotes db.                                                                  │
+│ count            Return number of quotes in db.                                                                   │
+│ get              Get 50 quotes from url and add to mySQL                                                          │
+│ list-sql         List quotes in mySQL                                                                             │
+│ delete-all-sql   Delete all quotes in mySQL                                                                       │
+│ list-latest-5    list latest 'number' quotes in mySQL, default 5                                                  │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
+
+**Основные команды CLI для локальной БД(quotes.csv)**
 
 - `start [-u URL] [-p Пауза]` — Получать цитаты с API и сохранять в локальную БД(quotes.csv) с паузой между запросами (по умолчанию 5 с)
 - `list [-a Автор]` — Показать список цитат (опционально с фильтрацией по автору)
@@ -141,6 +161,35 @@ art_studio_tz --help
   8    2025-09-28 08:31:24 UTC   The attempt to escape from pain, is what creates more pain.                    Gabor Mate
   9    2025-09-28 08:31:55 UTC   Our greatest glory is not in never falling but in rising every time we fall.   Confucius
   10   2025-09-28 08:32:26 UTC   If the plan doesn't work, change the plan, but never the goal.                 Unknown
+```
+
+Добавить 50 цитат в MySQL
+
+```bash
+  $ art_studio_tz get -u user -p pass --host 127.0.0.1 -d my_database
+
+  Added Quote: Many answers to what you seek don't lie 'out there'. If you look inwards, you'll find the answer has been in you all along. Author: Celestine Chua
+  Added Quote: Anyone who wants to achieve a dream must stay strong, focused and steady. - Author: Estee Lauder
+  Added Quote: It's necessary to get the losers out of your life if you want to live your dream. - Author: Les Brown
+  Added Quote: Mistake is a mistake only if you make it twice. - Author: Robin Sharma
+  Added Quote: Not how long, but how well you have lived is the main thing. - Author: Seneca
+  .....
+```
+
+Паказать 5 новейших цитат из MySQL
+
+```bash
+  $ art_studio_tz list-latest-5 -u user -p pass --host 127.0.0.1 -d my_database
+
+  ID    TimeStep              Quote                                                              Author
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  200   2025-09-28 11:02:33   To himself everyone is immortal; he may know that he is going to   Samuel Butler
+                              die, but he can never know he is dead.
+  198   2025-09-28 11:02:32   You just can't beat the person who never gives up.                 Babe Ruth
+  199   2025-09-28 11:02:32   Art is the signature of civilizations.                             Beverly Sills
+  196   2025-09-28 11:02:31   Love never keeps a man from pursuing his destiny.                  Paulo Coelho
+  197   2025-09-28 11:02:31   Without the rain there would be no rainbow.                        Gilbert Chesterton
+
 ```
 
 **Переменные окружения**
