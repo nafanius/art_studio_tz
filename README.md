@@ -2,9 +2,10 @@
 
 Это консольное приложение для управления цитатами.
 Поддерживает локальную базу данных(quotes.csv) и работу с MySQL.
-решение ТЗ пункт(3, 4, 5)
 
-index.html ТЗ пункт(2) [https://github.com/nafanius/art_studio_tz](Мудрые цитаты)
+- решение ТЗ пункт(3, 4, 5)
+
+- решение ТЗ пункт(2) index.html: [Мудрые цитаты](https://nafanius.github.io/art_studio_tz/)
 
 - Репозиторий: [https://github.com/nafanius/art_studio_tz](https://github.com/nafanius/art_studio_tz)
 - Лицензия: MIT
