@@ -6,8 +6,9 @@
 Это консольное приложение для управления цитатами.
 Поддерживает локальную базу данных(quotes.csv) и работу с MySQL.
 
-- решение ТЗ пункт(3, 4, 5): art_studio_tz - консольное приложенение работа с DB на основе CSV файла и MySQL c автоматической загрузкой данных по средсвам свободных API
+- решение ТЗ пункт(1) wordpress/random-quote.php: [[random_quote]](https://docs.google.com/document/d/e/2PACX-1vTVmd90XclSrG_l4o74Rf0JRaT1MMC-d-PRaWj0TgtXk9Rf5XEbkuses3ibg2i0XEgXnhr2H0y-sv_t/pub)
 - решение ТЗ пункт(2) index.html: [Мудрые цитаты](https://nafanius.github.io/art_studio_tz/)
+- решение ТЗ пункт(3, 4, 5): art_studio_tz - консольное приложенение работа с DB на основе CSV файла и MySQL c автоматической загрузкой данных по средсвам свободных API
 
 - Репозиторий: [https://github.com/nafanius/art_studio_tz](https://github.com/nafanius/art_studio_tz)
 - Лицензия: MIT
