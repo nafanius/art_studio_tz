@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>ART Studio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+        .page-title {
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <p></p>
+    </header>
+    <main>
+        <div class="container py-5">
+            <h1 class="page-title display-4 mb-5">Мудрые Цитаты</h1>
+
+            <div id="quote-container" class="card shadow-sm p-4 mb-3">
+                <blockquote class="blockquote mb-0">
+                    <p id="quote-text" class="fs-5 mb-2">
+                        Нажмите «Обновить цитату», чтобы загрузить.
+                    </p>
+                    <footer class="blockquote-footer">
+                        <span id="quote-author"></span>
+                    </footer>
+                </blockquote>
+            </div>
+            <button id="refresh-quote" class="btn btn-primary">Обновить цитату</button>
+        </div>
+    </main>
+    <footer>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('refresh-quote');
+            const textEl = document.getElementById('quote-text');
+            const authorEl = document.getElementById('quote-author');
+
+            async function loadQuote() {
+                btn.disabled = true;
+                btn.textContent = 'Загрузка...';
+                try {
+                    const response = await fetch('https://quoteslate.vercel.app/api/quotes/random');
+                    const data = await response.json();
+                    textEl.textContent = data.quote;
+                    authorEl.textContent = data.author || 'Неизвестный автор';
+                } catch (err) {
+                    textEl.textContent = 'Ошибка загрузки цитаты.';
+                    authorEl.textContent = '';
+                }
+                btn.disabled = false;
+                btn.textContent = 'Обновить цитату';
+            }
+
+            btn.addEventListener('click', loadQuote);
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

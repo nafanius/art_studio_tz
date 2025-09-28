@@ -1,8 +1,10 @@
 ## Art studio tz CLI
 
-это консольное приложение для управления цитатами.
+Это консольное приложение для управления цитатами.
 Поддерживает локальную базу данных(quotes.csv) и работу с MySQL.
 решение ТЗ пункт(3, 4, 5)
+
+index.html ТЗ пункт(2) [https://github.com/nafanius/art_studio_tz](Мудрые цитаты)
 
 - Репозиторий: [https://github.com/nafanius/art_studio_tz](https://github.com/nafanius/art_studio_tz)
 - Лицензия: MIT
@@ -52,7 +54,7 @@ poetry install
 art_studio_tz --help
 ```
 
-**Основные команды CLI**
+**Основные команды CLI для локальной БД(quotes.csv)**
 
 - `start [-u URL] [-p Пауза]` — Получать цитаты с API и сохранять в локальную БД(quotes.csv) с паузой между запросами (по умолчанию 5 с)
 - `list [-a Автор]` — Показать список цитат (опционально с фильтрацией по автору)
@@ -124,11 +126,13 @@ pytest
 ```bash
 .
 ├── art_studio_tz
-│ ├── **init**.py
-│ ├── **main**.py
-│ ├── api.py
-│ ├── db.py
-│ └── db_sql.py
+│ ├── __init__.py
+│ ├── __main__.py
+│ ├── cli.py          # UI через командную строку
+│ ├── api.py          # API управляющее приложением сязь между CLI и DB
+│ ├── db.py           # БД на базе csv
+│ └── db_sql.py       # БД на базе MySQL
+├── index.html        # Страница цитатник
 ├── LICENSE
 ├── pyproject.toml
 ├── quotes.csv
