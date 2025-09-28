@@ -3,8 +3,7 @@
 Это консольное приложение для управления цитатами.
 Поддерживает локальную базу данных(quotes.csv) и работу с MySQL.
 
-- решение ТЗ пункт(3, 4, 5)
-
+- решение ТЗ пункт(3, 4, 5): art_studio_tz - консольное приложенение работа с DB на основе CSV файла и MySQL c автоматической загрузкой данных по средсвам свободных API
 - решение ТЗ пункт(2) index.html: [Мудрые цитаты](https://nafanius.github.io/art_studio_tz/)
 
 - Репозиторий: [https://github.com/nafanius/art_studio_tz](https://github.com/nafanius/art_studio_tz)
@@ -133,7 +132,7 @@ pytest
 │ ├── api.py          # API управляющее приложением сязь между CLI и DB
 │ ├── db.py           # БД на базе csv
 │ └── db_sql.py       # БД на базе MySQL
-├── index.html        # Страница цитатник
+├── index.html        # Страница цитатник AJAX запросы
 ├── LICENSE
 ├── pyproject.toml
 ├── quotes.csv
