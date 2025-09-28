@@ -212,7 +212,7 @@ pytest
 - Python >= 3.10
 - Зависимости перечислены в pyproject.toml (SQLAlchemy, Typer, Rich и др.), requirement.txt
 
-## Струуктура
+## Структура
 
 ```bash
 .
@@ -220,7 +220,7 @@ pytest
 │ ├── __init__.py
 │ ├── __main__.py
 │ ├── cli.py          # UI через командную строку
-│ ├── api.py          # API управляющее приложением сязь между CLI и DB
+│ ├── api.py          # API управляющее приложением сdязь между CLI и DB
 │ ├── db.py           # БД на базе csv
 │ └── db_sql.py       # БД на базе MySQL
 ├── index.html        # Страница цитатник AJAX запросы
