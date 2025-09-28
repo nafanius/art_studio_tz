@@ -18,7 +18,7 @@
 - Добавление, удаление, обновление цитат.
 - Список цитат с фильтрацией по автору, по дате добаления в БД.
 - Сохранение и управления цитатами в локальную БД(quotes.csv) или MySQL.
-- Получение свежих цитат из БД MySQL.
+- Получение свежих цитат из БД MySQL c указанием количества (по умолчянию 5).
 - Работа через современный CLI-фреймворк [Typer](https://typer.tiangolo.com) и форматирование таблиц с помощью [Rich](https://github.com/Textualize/rich).
 
 ## Установка
@@ -58,6 +58,12 @@ art_studio_tz --help
 ```
 
 **Основные команды CLI для локальной БД(quotes.csv)**
+
+```bash
+  Usage: art_studio_tz [OPTIONS] COMMAND [ARGS]...
+
+  quotes is a small command line task tracking application
+```
 
 - `start [-u URL] [-p Пауза]` — Получать цитаты с API и сохранять в локальную БД(quotes.csv) с паузой между запросами (по умолчанию 5 с)
 - `list [-a Автор]` — Показать список цитат (опционально с фильтрацией по автору)
@@ -106,11 +112,44 @@ art_studio_tz --help
   --help Show this message and exit.
 ```
 
+**Примеры использования**
+
+Получение цитаты каждые 30 секунд по API, запись в quotes.csv
+
+```bash
+  $ art_studio_tz start -p 30
+
+  For stop taking quotes press 'Ctrl + C'
+  Added Quote: The attempt to escape from pain, is what creates more pain. - Author: Gabor Mate
+  For stop taking quotes press 'Ctrl + C'
+  Added Quote: Our greatest glory is not in never falling but in rising every time we fall. - Author: Confucius
+  For stop taking quotes press 'Ctrl + C'
+  Added Quote: If the plan doesn't work, change the plan, but never the goal. - Author: Unknown
+  For stop taking quotes press 'Ctrl + C'
+  ^C
+  Остановка запроса цитат пользователем.
+
+```
+
+Получение всех записей из quotes.csv
+
+````bash
+  $ art_studio_tz list
+
+   ID   TimeStep                  Quote                                                                          Author
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  8    2025-09-28 08:31:24 UTC   The attempt to escape from pain, is what creates more pain.                    Gabor Mate
+  9    2025-09-28 08:31:55 UTC   Our greatest glory is not in never falling but in rising every time we fall.   Confucius
+  10   2025-09-28 08:32:26 UTC   If the plan doesn't work, change the plan, but never the goal.                 Unknown
+```
+
 **Переменные окружения**
 
 ```bash
+  # по умолчянию DB на основе CSV(quotes.csv) создаётся автомотически в директории откуда вызывается программа
+  # при необходимости создайте переменную окружения где нужно сохранять quotes.csv
   export QUOTES_DB_DIR=/путь/к/папке
-```
+````
 
 **Разработка и тестирование**
 
