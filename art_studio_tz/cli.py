@@ -77,7 +77,7 @@ def delete(quote_id: int):
 @app.command()
 def update(
     quote_id: int,
-    author: str = typer.Option(None, "-o", "--owner"),
+    author: str = typer.Option(None, "-a", "--author"),
     text: List[str] = typer.Option(None, "-t", "--text"),
 ):
     """Modify a quote in db with given id with new info."""

@@ -91,7 +91,7 @@ poetry install
 - `version` — Показать версию приложения
 - `add "ТЕКСТ" -a "Автор"` — Добавить цитату в локальную БД
 - `delete <ID>` — Удалить цитату по ID, либо все
-- `update <ID> -t "Новый текст" -o "Новый автор"` — Обновить цитату по ID
+- `update <ID> -t "Новый текст" -a "Новый автор"` — Обновить цитату по ID
 - `config` — Показать путь к локальной базе данных
 - `count` — Показать количество цитат в локальной базе
 
@@ -126,7 +126,7 @@ $ art_studio_tz get --help
 │    --host      -H      TEXT     Database host, default localhost [default: localhost]             │
 │    --port      -P      INTEGER  Database port, default 3306 [default: 3306]                       │
 │    --database  -d      TEXT     Database name, default quotes_db [default: quotes_db]             │
-│    --url               TEXT     URL for get quotes, default https://zenquotes.io/api/random       │
+│    --url               TEXT     URL for get quotes, default https://zenquotes.io/api/quotes       │
 │                                 [default: https://zenquotes.io/api/quotes]                        │
 │    --help                       Show this message and exit.                                       │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
@@ -219,16 +219,18 @@ pytest
 ├── art_studio_tz
 │ ├── __init__.py
 │ ├── __main__.py
-│ ├── cli.py          # UI через командную строку
-│ ├── api.py          # API управляющее приложением сdязь между CLI и DB
-│ ├── db.py           # БД на базе csv
-│ └── db_sql.py       # БД на базе MySQL
-├── index.html        # Страница цитатник AJAX запросы
+│ ├── cli.py            # UI через командную строку
+│ ├── api.py            # API управляющее приложением сdязь между CLI и DB
+│ ├── db.py             # БД на базе csv
+│ └── db_sql.py         # БД на базе MySQL
+├── index.html          # Страница цитатник AJAX запросы
 ├── LICENSE
 ├── pyproject.toml
 ├── quotes.csv
 ├── README.md
 ├── requirement.txt
+├── wordpress
+│ └── random-quote.php  # Плагина Random Quotes для WordPress
 ├── tests
 │ ├── test_api.py
 │ ├── test_cli.py
