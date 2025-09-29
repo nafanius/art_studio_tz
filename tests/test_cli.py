@@ -60,7 +60,7 @@ def test_list_quote(mock_quote_db):
     assert "Author" in result.output
 
 def test_update(mock_quote_db):
-    result = runner.invoke(app, ["update", "1", "-t", "New text", "-o", "New author"])
+    result = runner.invoke(app, ["update", "1", "-t", "New text", "-a", "New author"])
     assert result.exit_code == 0
     mock_quote_db.update_quote.assert_called_once()
     arg = mock_quote_db.update_quote.call_args[0][1]
