@@ -9,7 +9,7 @@ description = "Art studio tz CLI"
 authors = ["Ilin Maksim <ilin1980maks@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/nafanius/art_studio_tz"
+homepage = "git+https://github.com/nafanius/art_studio_tz.git"
 
 [tool.poetry.dependencies]
 python = ">=3.10"
