@@ -70,7 +70,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/badges/coverage.svg docs/coverage_html_report/ docs/index.html
+          git add .github/badges/coverage.svg docs/coverage_html_report/
           git commit -m "CI/CD badges" || echo "No changes to commit"
           git push
         env:
