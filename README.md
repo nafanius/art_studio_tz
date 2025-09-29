@@ -2,6 +2,7 @@
 
 [![Coverage](.github/badges/coverage.svg)](https://nafanius.github.io/art_studio_tz/docs/coverage_html_report/)
 [![pages-build-deployment](https://github.com/nafanius/art_studio_tz/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/nafanius/art_studio_tz/actions/workflows/pages/pages-build-deployment)
+[![Build Test Deploy](https://github.com/nafanius/art_studio_tz/actions/workflows/ci.yml/badge.svg)](https://github.com/nafanius/art_studio_tz/actions/workflows/ci.yml)
 
 Это консольное приложение для управления цитатами.
 Поддерживает локальную базу данных(quotes.csv) и работу с MySQL.
