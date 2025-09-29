@@ -52,8 +52,8 @@ jobs:
           coverage html -d docs/coverage_html_report
           coverage-badge -o .github/badges/coverage.svg -f
 
-      - name: Upload coverage as artifact (optional)
-        uses: actions/upload-artifact@v3
+      - name: Upload coverage artifacts (optional)
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: |
