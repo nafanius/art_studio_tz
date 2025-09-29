@@ -1,4 +1,3 @@
--e git+ssh://git@github.com/nafanius/art_studio_tz.git@86e6afad6916768eb8f5826b4b35b475d5e00eae#egg=art_studio_tz
 certifi==2025.8.3
 charset-normalizer==3.4.3
 click==8.3.0
